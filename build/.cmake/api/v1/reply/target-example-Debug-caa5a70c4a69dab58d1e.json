@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "alkane"
+			"path" : "example"
 		}
 	],
 	"backtrace" : 1,
@@ -30,19 +30,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 14,
+				"line" : 16,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 27,
+				"line" : 29,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 22,
+				"line" : 24,
 				"parent" : 0
 			},
 			{
@@ -64,13 +64,13 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 16,
+				"line" : 18,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 26,
+				"line" : 28,
 				"parent" : 0
 			}
 		]
@@ -97,34 +97,6 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
-				}
-			],
-			"includes" : 
-			[
-				{
-					"backtrace" : 7,
-					"path" : "/home/zepyx/Projects/C++/alkane-engine/external"
-				},
-				{
-					"backtrace" : 7,
-					"path" : "/home/zepyx/Projects/C++/alkane-engine/include"
-				},
-				{
-					"backtrace" : 8,
-					"path" : "/usr/include/freetype2"
-				}
-			],
-			"language" : "C",
-			"sourceIndexes" : 
-			[
-				0
-			]
-		},
-		{
-			"compileCommandFragments" : 
-			[
-				{
 					"fragment" : "-g -std=c++20"
 				}
 			],
@@ -136,7 +108,7 @@
 				},
 				{
 					"backtrace" : 7,
-					"path" : "/home/zepyx/Projects/C++/alkane-engine/include"
+					"path" : "/home/zepyx/Projects/C++/alkane-engine/src"
 				},
 				{
 					"backtrace" : 8,
@@ -154,11 +126,39 @@
 			},
 			"sourceIndexes" : 
 			[
+				0
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/home/zepyx/Projects/C++/alkane-engine/external"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/zepyx/Projects/C++/alkane-engine/src"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "/usr/include/freetype2"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
 				1
 			]
 		}
 	],
-	"id" : "alkane::@6890427a1f51a3e7e1df",
+	"id" : "example::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -205,8 +205,8 @@
 			"fragment" : "/usr/lib/libfreetype.so"
 		}
 	],
-	"name" : "alkane",
-	"nameOnDisk" : "alkane",
+	"name" : "example",
+	"nameOnDisk" : "example",
 	"paths" : 
 	{
 		"build" : ".",
@@ -228,13 +228,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/glad.c",
+			"path" : "examples/main.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
-			"path" : "src/main.cpp",
+			"path" : "external/glad.c",
 			"sourceGroupIndex" : 0
 		}
 	],

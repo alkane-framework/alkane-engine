@@ -927,7 +927,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "alkane"
+			"value" : "example"
 		},
 		{
 			"name" : "CMAKE_PROJECT_SPDX_LICENSE",
@@ -1571,6 +1571,42 @@
 		},
 		{
 			"name" : "alkane_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/zepyx/Projects/C++/alkane-engine"
+		},
+		{
+			"name" : "example_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/zepyx/Projects/C++/alkane-engine/build"
+		},
+		{
+			"name" : "example_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "example_SOURCE_DIR",
 			"properties" : 
 			[
 				{

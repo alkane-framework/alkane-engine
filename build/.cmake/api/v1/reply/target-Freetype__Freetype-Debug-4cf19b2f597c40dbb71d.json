@@ -10,7 +10,7 @@
 		],
 		"files" : 
 		[
-			"/usr/share/cmake/Modules/FindOpenGL.cmake",
+			"/usr/share/cmake/Modules/FindFreetype.cmake",
 			"CMakeLists.txt"
 		],
 		"nodes" : 
@@ -21,7 +21,7 @@
 			{
 				"command" : 1,
 				"file" : 1,
-				"line" : 22,
+				"line" : 26,
 				"parent" : 0
 			},
 			{
@@ -31,7 +31,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 787,
+				"line" : 234,
 				"parent" : 2
 			}
 		]
@@ -41,10 +41,10 @@
 		"major" : 2,
 		"minor" : 9
 	},
-	"id" : "OpenGL::GLES3::@6890427a1f51a3e7e1df",
+	"id" : "Freetype::Freetype::@6890427a1f51a3e7e1df",
 	"imported" : true,
 	"local" : true,
-	"name" : "OpenGL::GLES3",
+	"name" : "Freetype::Freetype",
 	"paths" : 
 	{
 		"build" : ".",

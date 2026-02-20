@@ -2,18 +2,18 @@
 	"globsDependent" : 
 	[
 		{
-			"expression" : "/home/zepyx/Projects/C++/alkane-engine/src/*.c",
+			"expression" : "/home/zepyx/Projects/C++/alkane-engine/examples/*.cpp",
 			"paths" : 
 			[
-				"/home/zepyx/Projects/C++/alkane-engine/src/glad.c"
+				"/home/zepyx/Projects/C++/alkane-engine/examples/main.cpp"
 			],
 			"recurse" : true
 		},
 		{
-			"expression" : "/home/zepyx/Projects/C++/alkane-engine/src/*.cpp",
+			"expression" : "/home/zepyx/Projects/C++/alkane-engine/external/*.c",
 			"paths" : 
 			[
-				"/home/zepyx/Projects/C++/alkane-engine/src/main.cpp"
+				"/home/zepyx/Projects/C++/alkane-engine/external/glad.c"
 			],
 			"recurse" : true
 		}
