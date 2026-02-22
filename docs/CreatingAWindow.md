@@ -66,4 +66,5 @@ int main() {
 After this you should get a empty window when you run a code.
 
 ## Continue
-Docs for sprites, text, collisions etc will be wrritten soon
+* Go to the [Previous Page](./GettingStarted.md)
+or choose a specific topic to learn about from the [topics directory](./topics/) 

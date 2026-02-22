@@ -114,7 +114,7 @@ struct Body {
         glDisable(GL_BLEND);
     }
 
-    // --- AABB for collision ---
+    // AABB for collision
     Body getAABB() const {
         float w = hitboxW > 0 ? hitboxW : width;
         float h = hitboxH > 0 ? hitboxH : height;
