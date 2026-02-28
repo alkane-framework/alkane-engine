@@ -11,3 +11,4 @@
 #include "renderer/renderable.hpp"
 #include "renderer/sprite.hpp"
 #include "renderer/text.hpp"
+#include "engine.hpp"
