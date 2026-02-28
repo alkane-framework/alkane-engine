@@ -1,14 +1,20 @@
 [
 {
-  "directory": "/home/zepyx/Projects/C++/alkane-engine/build",
-  "command": "/usr/bin/clang++ -I/home/zepyx/Projects/C++/alkane-engine/external -I/home/zepyx/Projects/C++/alkane-engine/src -I/usr/include/freetype2 -g -std=c++20 -o CMakeFiles/example.dir/examples/main.cpp.o -c /home/zepyx/Projects/C++/alkane-engine/examples/main.cpp",
-  "file": "/home/zepyx/Projects/C++/alkane-engine/examples/main.cpp",
-  "output": "/home/zepyx/Projects/C++/alkane-engine/build/CMakeFiles/example.dir/examples/main.cpp.o"
+  "directory": "/home/zepyx/Projects/Git/alkane-framework/alkane-engine/build",
+  "command": "/usr/bin/c++  -I/home/zepyx/Projects/Git/alkane-framework/alkane-engine/external -I/home/zepyx/Projects/Git/alkane-framework/alkane-engine/src -I/usr/include/freetype2 -std=c++20 -o CMakeFiles/example.dir/examples/main.cpp.o -c /home/zepyx/Projects/Git/alkane-framework/alkane-engine/examples/main.cpp",
+  "file": "/home/zepyx/Projects/Git/alkane-framework/alkane-engine/examples/main.cpp",
+  "output": "CMakeFiles/example.dir/examples/main.cpp.o"
 },
 {
-  "directory": "/home/zepyx/Projects/C++/alkane-engine/build",
-  "command": "/usr/bin/clang -I/home/zepyx/Projects/C++/alkane-engine/external -I/home/zepyx/Projects/C++/alkane-engine/src -I/usr/include/freetype2 -g -o CMakeFiles/example.dir/external/glad.c.o -c /home/zepyx/Projects/C++/alkane-engine/external/glad.c",
-  "file": "/home/zepyx/Projects/C++/alkane-engine/external/glad.c",
-  "output": "/home/zepyx/Projects/C++/alkane-engine/build/CMakeFiles/example.dir/external/glad.c.o"
+  "directory": "/home/zepyx/Projects/Git/alkane-framework/alkane-engine/build",
+  "command": "/usr/bin/cc  -I/home/zepyx/Projects/Git/alkane-framework/alkane-engine/external -I/home/zepyx/Projects/Git/alkane-framework/alkane-engine/src -I/usr/include/freetype2  -o CMakeFiles/example.dir/external/glad.c.o -c /home/zepyx/Projects/Git/alkane-framework/alkane-engine/external/glad.c",
+  "file": "/home/zepyx/Projects/Git/alkane-framework/alkane-engine/external/glad.c",
+  "output": "CMakeFiles/example.dir/external/glad.c.o"
+},
+{
+  "directory": "/home/zepyx/Projects/Git/alkane-framework/alkane-engine/build",
+  "command": "/usr/bin/c++  -I/home/zepyx/Projects/Git/alkane-framework/alkane-engine/external -I/home/zepyx/Projects/Git/alkane-framework/alkane-engine/src -I/usr/include/freetype2 -std=c++20 -o CMakeFiles/example.dir/src/alkane/renderer/sprite.cpp.o -c /home/zepyx/Projects/Git/alkane-framework/alkane-engine/src/alkane/renderer/sprite.cpp",
+  "file": "/home/zepyx/Projects/Git/alkane-framework/alkane-engine/src/alkane/renderer/sprite.cpp",
+  "output": "CMakeFiles/example.dir/src/alkane/renderer/sprite.cpp.o"
 }
 ]

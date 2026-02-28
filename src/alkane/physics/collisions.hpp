@@ -1,5 +1,7 @@
 #pragma once
-#include <alkane/sprite.hpp> // for getting Rect and other types
+#include <alkane/math/math.hpp>
+#include <alkane/physics/body.hpp>
+#include <algorithm>
 
 enum class CollisionType {
     Dynamic,
@@ -8,108 +10,61 @@ enum class CollisionType {
 
 namespace physics {
 
-inline bool checkCollision(const Body &a, const Body &b) {
+// AABB collision check
+inline bool checkCollision(const Box2 &a, const Box2 &b) { // takes two bouding boxes
     return (a.x < b.x + b.width) && (a.x + a.width > b.x) &&
            (a.y < b.y + b.height) && (a.y + a.height > b.y);
 }
 
-// Resolve collisions
+// Main collision resolver
 inline void resolveCollision(Body &a, Body &b, CollisionType type) {
-    Body A = a.getAABB();
-    Body B = b.getAABB();
+    Box2 A = a.bounds();
+    Box2 B = b.bounds();
 
     if (!checkCollision(A, B))
         return;
 
-    float aLeft = A.x;
-    float aRight = A.x + A.width;
-    float aBottom = A.y;
-    float aTop = A.y + A.height;
+    // Calculate overlaps
+    float overlapX = std::min(A.x + A.width, B.x + B.width) - std::max(A.x, B.x);
+    float overlapY = std::min(A.y + A.height, B.y + B.height) - std::max(A.y, B.y);
 
-    float bLeft = B.x;
-    float bRight = B.x + B.width;
-    float bBottom = B.y;
-    float bTop = B.y + B.height;
+    if (overlapX <= 0 || overlapY <= 0)
+        return;
 
-    float overlapX = std::min(aRight, bRight) - std::max(aLeft, bLeft);
-    float overlapY = std::min(aTop, bTop) - std::max(aBottom, bBottom);
-
-    // normals
-    float nx = 0.0f;
-    float ny = 0.0f;
-
-    if (overlapX < overlapY) {
+    // Determine collision normal (axis of minimum penetration)
+    float nx = 0.0f, ny = 0.0f;
+    bool pushX = overlapX < overlapY;
+    if (pushX)
         nx = (A.x < B.x) ? -1.0f : 1.0f;
-    } else {
+    else
         ny = (A.y < B.y) ? -1.0f : 1.0f;
-    }
 
-    // positional correction
+    // pos correction
+    float percent = 0.8f; // push factor
     if (type == CollisionType::Static) {
-        // move only A (dynamic body against static world)
-
-        if (overlapX < overlapY) {
-            if (A.x < B.x)
-                a.x -= overlapX;
-            else
-                a.x += overlapX;
-        } else {
-            if (A.y < B.y)
-                a.y -= overlapY;
-            else
-                a.y += overlapY;
-        }
+        if (pushX)
+            a.x += (A.x < B.x ? -overlapX : overlapX);
+        else
+            a.y += (A.y < B.y ? -overlapY : overlapY);
     } else {
-        // dynamic vs dynamic → split correction
-        if (overlapX < overlapY) {
-            if (A.x < B.x) {
-                a.x -= overlapX * 0.5f;
-                b.x += overlapX * 0.5f;
-            } else {
-                a.x += overlapX * 0.5f;
-                b.x -= overlapX * 0.5f;
-            }
+        if (pushX) {
+            a.x += (A.x < B.x ? -overlapX * 0.5f : overlapX * 0.5f);
+            b.x += (A.x < B.x ? overlapX * 0.5f : -overlapX * 0.5f);
         } else {
-            if (A.y < B.y) {
-                a.y -= overlapY * 0.5f;
-                b.y += overlapY * 0.5f;
-            } else {
-                a.y += overlapY * 0.5f;
-                b.y -= overlapY * 0.5f;
-            }
+            a.y += (A.y < B.y ? -overlapY * 0.5f : overlapY * 0.5f);
+            b.y += (A.y < B.y ? overlapY * 0.5f : -overlapY * 0.5f);
         }
     }
-    // Static Collision
+
+    // (Static Collision) Zero Velcity Alone Normal
     if (type == CollisionType::Static) {
-        if (nx != 0)
-            a.vx = 0;
-        if (ny != 0)
-            a.vy = 0;
+        if (pushX)
+            a.vx = 0.0f;
+        else
+            a.vy = 0.0f;
         return;
     }
 
-    // impulse physics collision
-    float rvx = a.vx - b.vx;
-    float rvy = a.vy - b.vy;
-
-    float velAlongNormal = rvx * nx + rvy * ny;
-
-    if (velAlongNormal > -0.01f) {
-        return;
-    }
-
-    float restitution = 0.01f;
-
-    float j = -(1.0f + restitution) * velAlongNormal;
-    j /= 2.0f;              // equal mass
-    j = std::min(j, 50.0f); // clamp impulse
-
-    float impulseX = j * nx;
-    float impulseY = j * ny;
-
-    a.vx += -impulseX;
-    a.vy += -impulseY;
-    b.vx += impulseX;
-    b.vy += impulseY;
 }
+
 } // namespace physics

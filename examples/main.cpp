@@ -1,65 +1,68 @@
 #include <alkane/physics/collisions.hpp>
-#include <alkane/textures/textures.hpp>
+#include <alkane/graphics/texture.hpp>
 #include <alkane/engine.hpp>
-#include <alkane/input.hpp>
-#include <alkane/graphics.hpp>
-#include <alkane/sprite.hpp>
+#include <alkane/input/input.hpp>
+#include <alkane/graphics/graphics.hpp>
+#include <alkane/renderer/sprite.hpp>
 
-Sprite sprite;
-Body body = {200, 200, 100, 100, "#FF0000"};
+static Body playerBody{100, 50, 128, 128, "#FFFFFF", 1.0f};
+static Body wallBody{200, 200, 100, 100, "#FF0000", 1.0f};
 
-void update() {
-    // all game logic like physics etc
+static Sprite playerSprite;
+static Sprite wallSprite;
+
+static engine::Engine* gEngine = nullptr;
+
+void update()
+{
     float delta = engine::Engine::deltaTime();
 
-    sprite.update(delta);
-    body.update(delta);
+    playerBody.update(delta);
+    wallBody.update(delta);
 
-    physics::resolveCollision(sprite.body, body, CollisionType::Dynamic);
+    // physics::resolveCollision(playerBody, wallBody, CollisionType::Static);
 
-    // Movement with keys
+    // Movement
     if (input::isKeyDown(KEY_S))
-        sprite.body.vy += 5.0f;
+        playerBody.vy += 5.0f;
     if (input::isKeyDown(KEY_W))
-        sprite.body.vy -= 5.0f;
+        playerBody.vy -= 5.0f;
     if (input::isKeyDown(KEY_D))
-        sprite.body.vx += 5.0f;
+        playerBody.vx += 5.0f;
     if (input::isKeyDown(KEY_A))
-        sprite.body.vx -= 5.0f;
+        playerBody.vx -= 5.0f;
 }
 
-void render() {
-    colors::clearFrame("#FFFFFF");
-    sprite.draw();
-    body.draw();
+void render()
+{
+    graphics::clearFrame("#FFFFFF");
+
+    Renderer& renderer = gEngine->getRenderer();
+
+    renderer.draw(playerSprite);
+    renderer.draw(wallSprite);
 }
 
-int main() {
-    // Create the engine instance
+int main()
+{
     engine::Engine engine(1024, 768, "Alkane Engine", nullptr, nullptr);
+    gEngine = &engine;
 
-    // Initialize engine (GLFW + GLAD + viewport)
-    if (!engine.init()) {
-        return -1; // initialization failed
-    }
+    if (!engine.init())
+        return -1;
 
     GLuint tex = loadTexture("assets/wall.jpg", GL_NEAREST);
-    sprite = {
-        Body{
-            100,
-            50,
-            128,
-            128,
-            "#FFFFFF",
-            1.0f},
-        tex};
-    // sprite.useGravity = true;
 
-    // Set user callbacks
+    // Player sprite
+    playerSprite.body = &playerBody;
+    playerSprite.texture = tex;
+
+    // Wall sprite (no texture = colored quad)
+    wallSprite.body = &wallBody;
+    wallSprite.texture = 0;
+
     engine.setUpdate(update);
     engine.setRender(render);
-
-    // Start the main loop (engine owns loop, swap/poll handled internally)
     engine.run();
 
     return 0;

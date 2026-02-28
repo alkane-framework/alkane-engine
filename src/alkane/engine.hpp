@@ -1,7 +1,9 @@
 #pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <alkane/input.hpp>
+#include <alkane/input/input.hpp>
+#include <alkane/renderer/renderer.hpp>
+#include <alkane/graphics/graphics.hpp>
 
 namespace engine {
 
@@ -18,6 +20,8 @@ class Engine {
     // setter functions
     void setUpdate(void (*cb)()) { update = cb; }
     void setRender(void (*cb)()) { render = cb; }
+
+    Renderer& getRenderer() { return renderer; }
 
     bool init() {
 
@@ -63,6 +67,8 @@ class Engine {
 
             input::update(window); // update keyboard/mouse states
 
+            graphics::clearFrame("#FFFFFF");
+
             if (update)
                 update();
             if (render)
@@ -80,6 +86,7 @@ class Engine {
     int height;
     const char *title;
     GLFWwindow *window;
+    Renderer renderer;
     void (*update)() = nullptr;
     void (*render)() = nullptr;
 
